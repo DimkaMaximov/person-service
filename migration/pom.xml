@@ -3,6 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
     <parent>
         <artifactId>dependency-management-bom</artifactId>
         <groupId>liga.medical</groupId>
@@ -10,13 +11,11 @@
         <relativePath>../dependency-management-bom/pom.xml</relativePath>
     </parent>
 
-    <artifactId>person-service-dto</artifactId>
+    <artifactId>person-service-migration</artifactId>
     <packaging>jar</packaging>
 
     <dependencies>
-        <dependency>
-            <groupId>liga.medical</groupId>
-            <artifactId>common-dto</artifactId>
-        </dependency>
+
     </dependencies>
+
 </project>

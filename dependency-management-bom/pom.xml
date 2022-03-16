@@ -6,12 +6,16 @@
 
     <parent>
         <artifactId>person-service</artifactId>
-        <groupId>liga.internship</groupId>
+        <groupId>liga.medical</groupId>
         <version>0.0.1</version>
     </parent>
 
     <artifactId>dependency-management-bom</artifactId>
     <packaging>pom</packaging>
+
+    <properties>
+        <!--        Проектные настройки\версии-->
+    </properties>
 
     <dependencyManagement>
         <dependencies>
@@ -29,41 +33,56 @@
                 <scope>test</scope>
             </dependency>
 
-
             <dependency>
-                <groupId>liga.internship</groupId>
+                <groupId>liga.medical</groupId>
                 <artifactId>common-dto</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>liga.internship</groupId>
+                <groupId>liga.medical</groupId>
                 <artifactId>common-services</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>liga.internship</groupId>
+                <groupId>liga.medical</groupId>
                 <artifactId>common-utils</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>liga.internship</groupId>
+                <groupId>liga.medical</groupId>
                 <artifactId>person-service-core-api</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>liga.internship</groupId>
-                <artifactId>person-service-dto</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>liga.internship</groupId>
+                <groupId>liga.medical</groupId>
                 <artifactId>person-service-utils</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>liga.internship</groupId>
+                <groupId>liga.medical</groupId>
+                <artifactId>person-service-dto</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>liga.medical</groupId>
                 <artifactId>person-service-core</artifactId>
                 <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.modelmapper</groupId>
+                <artifactId>modelmapper</artifactId>
+                <version>${model.mapper.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.validation</groupId>
+                <artifactId>validation-api</artifactId>
+                <version>${validation-api.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -75,5 +94,4 @@
             </plugins>
         </pluginManagement>
     </build>
-
 </project>

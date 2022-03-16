@@ -6,23 +6,22 @@
 
     <parent>
         <artifactId>dependency-management-bom</artifactId>
-        <groupId>liga.internship</groupId>
+        <groupId>liga.medical</groupId>
         <version>0.0.1</version>
         <relativePath>../dependency-management-bom/pom.xml</relativePath>
     </parent>
 
-    <packaging>jar</packaging>
     <artifactId>person-service-utils</artifactId>
+    <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
-            <groupId>liga.internship</groupId>
+            <groupId>liga.medical</groupId>
             <artifactId>common-utils</artifactId>
         </dependency>
         <dependency>
-            <groupId>liga.internship</groupId>
+            <groupId>liga.medical</groupId>
             <artifactId>person-service-dto</artifactId>
         </dependency>
     </dependencies>
-
 </project>

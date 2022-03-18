@@ -1,3 +1,5 @@
+DROP VIEW IF EXISTS person_info;
+
 DROP TABLE IF EXISTS illness;
 DROP TABLE IF EXISTS person_data;
 DROP TABLE IF EXISTS address;
@@ -27,15 +29,15 @@ CREATE TABLE contact
 CREATE TABLE medical_card
 (
     id BIGINT PRIMARY KEY DEFAULT nextval('medical_card_seq'),
-    client_status   CHAR,
-    med_status      CHAR,
+    client_status   CHAR (10),
+    med_status      CHAR (10),
     registry_dt     DATE    NOT NULL,
     comment         TEXT
 );
 
 CREATE TABLE address
 (
-    id BIGINT PRIMARY KEY DEFAULT nextval('address'),
+    id BIGINT PRIMARY KEY DEFAULT nextval('address_seq'),
     contact_id      BIGINT         NOT NULL,
     country_id      BIGINT         NOT NULL,
     city            VARCHAR(255)   NOT NULL,
@@ -48,7 +50,7 @@ CREATE TABLE address
 
 CREATE TABLE person_data
 (
-    id BIGINT PRIMARY KEY DEFAULT nextval('person_data'),
+    id BIGINT PRIMARY KEY DEFAULT nextval('person_data_seq'),
     last_name       VARCHAR(255)    NOT NULL,
     first_name      VARCHAR(255)    NOT NULL,
     birth_dt        DATE            NOT NULL,
@@ -67,7 +69,7 @@ CREATE TABLE illness
     id BIGINT PRIMARY KEY DEFAULT nextval('illness_seq'),
     medical_card_id BIGINT          NOT NULL,
     type_id         BIGINT,
-    heaviness       CHAR,
+    heaviness       CHAR(10),
     appearance_dttm TIMESTAMP       NOT NULL,
     recovery_dt     DATE,
     FOREIGN KEY (medical_card_id) REFERENCES medical_card(id)

@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Data
@@ -11,7 +12,6 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 public class AddressDto {
 
-    @NotNull
     private Long id;
 
     @NotNull
@@ -20,15 +20,15 @@ public class AddressDto {
     @NotNull
     private Long countryId;
 
-    @NotNull
+    @NotBlank
     private String city;
 
     private Integer index;
 
-    @NotNull
+    @NotBlank
     private String street;
 
-    @NotNull
+    @NotBlank
     private String building;
 
     private String flat;

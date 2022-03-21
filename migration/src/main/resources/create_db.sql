@@ -43,7 +43,7 @@ CREATE TABLE address
     street          VARCHAR(255)   NOT NULL,
     building        VARCHAR(32)    NOT NULL,
     flat            VARCHAR(32),
-    FOREIGN KEY (contact_id) REFERENCES contact(id)
+    FOREIGN KEY (contact_id) REFERENCES contact(id) ON DELETE CASCADE
 );
 
 CREATE TABLE person_data
@@ -57,9 +57,9 @@ CREATE TABLE person_data
     contact_id      BIGINT          NOT NULL,
     medical_card_id BIGINT          NOT NULL,
     parent_id       BIGINT,
-    FOREIGN KEY (contact_id) REFERENCES contact(id),
-    FOREIGN KEY (medical_card_id) REFERENCES medical_card(id),
-    FOREIGN KEY (parent_id) REFERENCES person_data(id)
+    FOREIGN KEY (contact_id) REFERENCES contact(id) ON DELETE CASCADE,
+    FOREIGN KEY (medical_card_id) REFERENCES medical_card(id) ON DELETE CASCADE,
+    FOREIGN KEY (parent_id) REFERENCES person_data(id) ON DELETE CASCADE
 );
 
 CREATE TABLE illness
@@ -70,5 +70,5 @@ CREATE TABLE illness
     heaviness       CHAR(10),
     appearance_dttm TIMESTAMP       NOT NULL,
     recovery_dt     DATE,
-    FOREIGN KEY (medical_card_id) REFERENCES medical_card(id)
+    FOREIGN KEY (medical_card_id) REFERENCES medical_card(id) ON DELETE CASCADE
 );

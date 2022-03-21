@@ -13,7 +13,6 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class IllnessDto {
 
-    @NotNull
     private Long id;
 
     @NotNull

@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Data
@@ -12,7 +13,6 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class PersonDataDto {
 
-    @NotBlank
     private Long id;
 
     @NotBlank
@@ -21,18 +21,18 @@ public class PersonDataDto {
     @NotBlank
     private String firstName;
 
-    @NotBlank
+    @NotNull
     private LocalDate birthDt;
 
     private Integer age;
 
-    @NotBlank
+    @NotNull
     private Character sex;
 
-    @NotBlank
+    @NotNull
     private Long contactId;
 
-    @NotBlank
+    @NotNull
     private Long medicalCardId;
 
     private Long parentId;

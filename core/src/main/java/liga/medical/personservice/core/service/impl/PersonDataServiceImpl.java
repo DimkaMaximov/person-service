@@ -20,6 +20,7 @@ public class PersonDataServiceImpl implements PersonDataService {
     @Autowired
     private ModelMapper modelMapper;
 
+    @Override
     public List<PersonDataDto> findAll() {
         List<PersonDataEntity> personDataList = repository.findAll();
         return personDataList.stream()
@@ -27,11 +28,13 @@ public class PersonDataServiceImpl implements PersonDataService {
                 .collect(Collectors.toList());
     }
 
+    @Override
     public PersonDataDto findById(Long id) {
         PersonDataEntity personData = repository.findById(id);
         return modelMapper.map(personData, PersonDataDto.class);
     }
 
+    @Override
     public void insertAll(List<PersonDataDto> personDataDtoList) {
         List<PersonDataEntity> personDataList = personDataDtoList.stream()
                 .map(el -> modelMapper.map(el, PersonDataEntity.class))
@@ -39,12 +42,14 @@ public class PersonDataServiceImpl implements PersonDataService {
         repository.insertAll(personDataList);
     }
 
+    @Override
     public void insert(PersonDataDto personDataDto) {
         PersonDataEntity personData = modelMapper.map(personDataDto, PersonDataEntity.class);
         if (personData.getId() == null) repository.insert(personData);
         else repository.updateById(personData);
     }
 
+    @Override
     public void deleteById(Long id) {
         repository.deleteById(id);
     }

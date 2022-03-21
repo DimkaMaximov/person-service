@@ -20,6 +20,7 @@ public class ContactServiceImpl implements ContactService {
     @Autowired
     private ModelMapper modelMapper;
 
+    @Override
     public List<ContactDto> findAll() {
         List<ContactEntity> contactList = repository.findAll();
         return contactList.stream()
@@ -27,11 +28,13 @@ public class ContactServiceImpl implements ContactService {
                 .collect(Collectors.toList());
     }
 
+    @Override
     public ContactDto findById(Long id) {
         ContactEntity contact = repository.findById(id);
         return modelMapper.map(contact, ContactDto.class);
     }
 
+    @Override
     public void insertAll(List<ContactDto> contactDtoList) {
         List<ContactEntity> contactList = contactDtoList.stream()
                 .map(el -> modelMapper.map(el, ContactEntity.class))
@@ -39,12 +42,14 @@ public class ContactServiceImpl implements ContactService {
         repository.insertAll(contactList);
     }
 
+    @Override
     public void insert(ContactDto contactDto) {
         ContactEntity contact = modelMapper.map(contactDto, ContactEntity.class);
         if (contact.getId() == null) repository.insert(contact);
         else repository.updateById(contact);
     }
 
+    @Override
     public void deleteById(Long id) {
         repository.deleteById(id);
     }

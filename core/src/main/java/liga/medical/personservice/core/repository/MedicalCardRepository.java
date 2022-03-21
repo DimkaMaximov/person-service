@@ -20,7 +20,7 @@ public interface MedicalCardRepository {
     @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
     int insert(MedicalCardEntity cardEntity);
 
-    List<MedicalCardEntity> findByIds();
+    List<MedicalCardEntity> findAll();
 
     int insertAll(@Param("cardList") List<MedicalCardEntity> cardEntityList);
 

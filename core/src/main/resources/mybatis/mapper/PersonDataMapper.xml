@@ -21,19 +21,19 @@
         INSERT INTO person_data(last_name, first_name, birth_dt, age, sex, contact_id, medical_card_id, parent_id)
         VALUES
         <foreach collection="personDataList" item="personData" separator=",">
-            (#{personData.lastName, jdbcType=VARCHAR}, #{personData.firstName, jdbcType=VARCHAR},
-            #{personData.birthDt, jdbcType=DATE},
-            #{personData.age, jdbcType=SMALLINT}, #{personData.sex, jdbcType=CHARACTER},
-            #{personData.contactId, jdbcType=BIGINT},
-            #{personData.medicalCardId, jdbcType=BIGINT}, #{personData.parentId, jdbcType=BIGINT})
+            (#{personData.lastName}, #{personData.firstName},
+            #{personData.birthDt},
+            #{personData.age}, #{personData.sex},
+            #{personData.contactId},
+            #{personData.medicalCardId}, #{personData.parentId})
         </foreach>
     </insert>
 
     <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
         INSERT INTO person_data (last_name, first_name, birth_dt, age, sex, contact_id, medical_card_id, parent_id)
-        VALUES (#{lastName, jdbcType=VARCHAR}, #{firstName, jdbcType=VARCHAR}, #{birthDt, jdbcType=DATE},
-                #{age, jdbcType=SMALLINT}, #{sex, jdbcType=CHARACTER}, #{contactId, jdbcType=BIGINT},
-                #{medicalCardId, jdbcType=BIGINT}, #{parentId, jdbcType=BIGINT});
+        VALUES (#{lastName}, #{firstName}, #{birthDt},
+                #{age}, #{sex}, #{contactId},
+                #{medicalCardId}, #{parentId});
     </insert>
 
     <!--    <update id="updateById" parameterType="liga.medical.personservice.core.model.ContactEntity" >-->

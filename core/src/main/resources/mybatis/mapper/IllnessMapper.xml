@@ -20,16 +20,16 @@
     <insert id="insertAll" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
         INSERT INTO illness(medical_card_id, type_id, heaviness, appearance_dttm, recovery_dt) VALUES
         <foreach collection="illnessList" item="illness" separator=",">
-            (#{illness.medicalCardId, jdbcType=BIGINT}, #{illness.typeId, jdbcType=BIGINT},
-            #{illness.heaviness, jdbcType=CHARACTER},
-            #{illness.appearanceDttm, jdbcType=TIMESTAMP}, #{illness.recoveryDt, jdbcType=DATE})
+            (#{illness.medicalCardId}, #{illness.typeId},
+            #{illness.heaviness},
+            #{illness.appearanceDttm}, #{illness.recoveryDt})
         </foreach>
     </insert>
 
     <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
         INSERT INTO illness (medical_card_id, type_id, heaviness, appearance_dttm, recovery_dt)
-        VALUES (#{medicalCardId, jdbcType=BIGINT}, #{typeId, jdbcType=BIGINT}, #{heaviness, jdbcType=CHARACTER},
-                #{appearanceDttm, jdbcType=TIMESTAMP}, #{recoveryDt, jdbcType=DATE});
+        VALUES (#{medicalCardId}, #{typeId}, #{heaviness},
+                #{appearanceDttm}, #{recoveryDt});
     </insert>
 
     <!--    <update id="updateById" parameterType="liga.medical.personservice.core.model.ContactEntity" >-->

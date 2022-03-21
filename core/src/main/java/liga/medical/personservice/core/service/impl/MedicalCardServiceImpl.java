@@ -20,18 +20,21 @@ public class MedicalCardServiceImpl implements MedicalCardService {
     @Autowired
     private ModelMapper modelMapper;
 
+    @Override
     public List<MedicalCardDto> findAll() {
-        List<MedicalCardEntity> medicalCardList = repository.findByIds();
+        List<MedicalCardEntity> medicalCardList = repository.findAll();
         return medicalCardList.stream()
                 .map(el -> modelMapper.map(el, MedicalCardDto.class))
                 .collect(Collectors.toList());
     }
 
+    @Override
     public MedicalCardDto findById(Long id) {
         MedicalCardEntity medicalCard = repository.findById(id);
         return modelMapper.map(medicalCard, MedicalCardDto.class);
     }
 
+    @Override
     public void insertAll(List<MedicalCardDto> medicalCard) {
         List<MedicalCardEntity> cardEntityList = medicalCard.stream()
                 .map(el -> modelMapper.map(el, MedicalCardEntity.class))
@@ -39,6 +42,7 @@ public class MedicalCardServiceImpl implements MedicalCardService {
         repository.insertAll(cardEntityList);
     }
 
+    @Override
     public void insert(MedicalCardDto medicalCard) {
         MedicalCardEntity cardEntity = modelMapper.map(medicalCard, MedicalCardEntity.class);
         repository.insert(cardEntity);
@@ -46,6 +50,6 @@ public class MedicalCardServiceImpl implements MedicalCardService {
 
     @Override
     public void deleteById(Long id) {
-
+        repository.deleteById(id);
     }
 }

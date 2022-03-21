@@ -6,7 +6,7 @@
         <id property="id" column="id" jdbcType="BIGINT"/>
     </resultMap>
 
-    <select id="findByIds" resultMap="medicalEntity">
+    <select id="findAll" resultMap="medicalEntity">
         SELECT *
         FROM medical_card
     </select>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="liga.medical.personservice.core.repository.IllnessRepository">
+
+    <resultMap id="illnessEntity" type="liga.medical.personservice.core.model.IllnessEntity" autoMapping="true">
+        <id property="id" column="id" jdbcType="BIGINT"/>
+    </resultMap>
+
+    <select id="findAll" resultMap="illnessEntity">
+        SELECT *
+        FROM illness;
+    </select>
+
+    <select id="findById" resultMap="illnessEntity">
+        SELECT *
+        FROM illness
+        WHERE id = #{illnessId};
+    </select>
+
+    <insert id="insertAll" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        INSERT INTO illness(medical_card_id, type_id, heaviness, appearance_dttm, recovery_dt) VALUES
+        <foreach collection="illnessList" item="illness" separator=",">
+            (#{illness.medicalCardId, jdbcType=BIGINT}, #{illness.typeId, jdbcType=BIGINT},
+            #{illness.heaviness, jdbcType=CHARACTER},
+            #{illness.appearanceDttm, jdbcType=TIMESTAMP}, #{illness.recoveryDt, jdbcType=DATE})
+        </foreach>
+    </insert>
+
+    <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        INSERT INTO illness (medical_card_id, type_id, heaviness, appearance_dttm, recovery_dt)
+        VALUES (#{medicalCardId, jdbcType=BIGINT}, #{typeId, jdbcType=BIGINT}, #{heaviness, jdbcType=CHARACTER},
+                #{appearanceDttm, jdbcType=TIMESTAMP}, #{recoveryDt, jdbcType=DATE});
+    </insert>
+
+    <!--    <update id="updateById" parameterType="liga.medical.personservice.core.model.ContactEntity" >-->
+    <!--        <if test="id != null">-->
+    <!--            UPDATE contact SET-->
+    <!--            <if test="phoneNumber != null">-->
+    <!--                phone_number = #{phoneNumber},-->
+    <!--            </if>-->
+    <!--            <if test="email != null">-->
+    <!--                email = #{email},-->
+    <!--            </if>-->
+    <!--            <if test="profileLink != null">-->
+    <!--                profile_link = #{profileLink},-->
+    <!--            </if>-->
+    <!--            WHERE id = #{id};-->
+    <!--        </if>-->
+    <!--    </update>-->
+
+    <update id="updateById" parameterType="liga.medical.personservice.core.model.IllnessEntity">
+        UPDATE illness
+        SET medical_card_id = #{illness.medicalCardId},
+            type_id         = #{illness.typeId},
+            heaviness       = #{illness.heaviness},
+            appearance_dttm = #{illness.appearanceDttm},
+            recovery_dt     = #{illness.recoveryDt}
+        WHERE id = #{illness.id};
+    </update>
+
+    <delete id="deleteById">
+        DELETE
+        FROM illness
+        WHERE id = #{illnessId, jdbcType=BIGINT};
+    </delete>
+</mapper>

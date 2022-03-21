@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="liga.medical.personservice.core.repository.PersonDataRepository">
+
+    <resultMap id="personDataEntity" type="liga.medical.personservice.core.model.PersonDataEntity" autoMapping="true">
+        <id property="id" column="id" jdbcType="BIGINT"/>
+    </resultMap>
+
+    <select id="findAll" resultMap="personDataEntity">
+        SELECT *
+        FROM person_data;
+    </select>
+
+    <select id="findById" resultMap="personDataEntity">
+        SELECT *
+        FROM person_data
+        WHERE id = #{personDataId};
+    </select>
+
+    <insert id="insertAll" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        INSERT INTO person_data(last_name, first_name, birth_dt, age, sex, contact_id, medical_card_id, parent_id)
+        VALUES
+        <foreach collection="personDataList" item="personData" separator=",">
+            (#{personData.lastName, jdbcType=VARCHAR}, #{personData.firstName, jdbcType=VARCHAR},
+            #{personData.birthDt, jdbcType=DATE},
+            #{personData.age, jdbcType=SMALLINT}, #{personData.sex, jdbcType=CHARACTER},
+            #{personData.contactId, jdbcType=BIGINT},
+            #{personData.medicalCardId, jdbcType=BIGINT}, #{personData.parentId, jdbcType=BIGINT})
+        </foreach>
+    </insert>
+
+    <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        INSERT INTO person_data (last_name, first_name, birth_dt, age, sex, contact_id, medical_card_id, parent_id)
+        VALUES (#{lastName, jdbcType=VARCHAR}, #{firstName, jdbcType=VARCHAR}, #{birthDt, jdbcType=DATE},
+                #{age, jdbcType=SMALLINT}, #{sex, jdbcType=CHARACTER}, #{contactId, jdbcType=BIGINT},
+                #{medicalCardId, jdbcType=BIGINT}, #{parentId, jdbcType=BIGINT});
+    </insert>
+
+    <!--    <update id="updateById" parameterType="liga.medical.personservice.core.model.ContactEntity" >-->
+    <!--        <if test="id != null">-->
+    <!--            UPDATE contact SET-->
+    <!--            <if test="phoneNumber != null">-->
+    <!--                phone_number = #{phoneNumber},-->
+    <!--            </if>-->
+    <!--            <if test="email != null">-->
+    <!--                email = #{email},-->
+    <!--            </if>-->
+    <!--            <if test="profileLink != null">-->
+    <!--                profile_link = #{profileLink},-->
+    <!--            </if>-->
+    <!--            WHERE id = #{id};-->
+    <!--        </if>-->
+    <!--    </update>-->
+
+    <update id="updateById" parameterType="liga.medical.personservice.core.model.PersonDataEntity">
+        UPDATE person_data
+        SET last_name       = #{personData.lastName},
+            first_name      = #{personData.firstName},
+            birth_dt        = #{personData.birthDt},
+            age             = #{personData.age},
+            sex             = #{personData.sex},
+            contact_id      = #{personData.contactId},
+            medical_card_id = #{personData.medicalCardId},
+            parent_id       = #{personData.parentId}
+        WHERE id = #{personData.id};
+    </update>
+
+    <delete id="deleteById">
+        DELETE
+        FROM person_data
+        WHERE id = #{personDataId, jdbcType=BIGINT};
+    </delete>
+</mapper>

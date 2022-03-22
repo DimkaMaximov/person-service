@@ -32,17 +32,23 @@
                 #{appearanceDttm}, #{recoveryDt});
     </insert>
 
-    <!--    <update id="updateById" parameterType="liga.medical.personservice.core.model.ContactEntity" >-->
+    <!--    <update id="updateById" parameterType="liga.medical.personservice.core.model.IllnessEntity" >-->
     <!--        <if test="id != null">-->
     <!--            UPDATE contact SET-->
-    <!--            <if test="phoneNumber != null">-->
-    <!--                phone_number = #{phoneNumber},-->
+    <!--            <if test="medicalCardId != null">-->
+    <!--                medical_card_id = #{medicalCardId},-->
     <!--            </if>-->
-    <!--            <if test="email != null">-->
-    <!--                email = #{email},-->
+    <!--            <if test="typeId != null">-->
+    <!--                type_id = #{typeId},-->
     <!--            </if>-->
-    <!--            <if test="profileLink != null">-->
-    <!--                profile_link = #{profileLink},-->
+    <!--            <if test="heaviness != null">-->
+    <!--                heaviness = #{heaviness},-->
+    <!--            </if>-->
+    <!--            <if test="appearanceDttm != null">-->
+    <!--                appearance_dttm = #{appearanceDttm},-->
+    <!--            </if>-->
+    <!--            <if test="recoveryDt != null">-->
+    <!--                recovery_dt = #{recoveryDt},-->
     <!--            </if>-->
     <!--            WHERE id = #{id};-->
     <!--        </if>-->

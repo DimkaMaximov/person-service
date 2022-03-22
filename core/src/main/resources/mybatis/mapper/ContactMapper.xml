@@ -20,14 +20,14 @@
     <insert id="insertAll" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
         INSERT INTO contact (phone_number, email, profile_link) VALUES
         <foreach collection="contactList" item="contact" separator=",">
-            (#{contact.phoneNumber, jdbcType=VARCHAR}, #{contact.email, jdbcType=VARCHAR},
-            #{contact.profileLink, jdbcType=TEXT})
+            (#{contact.phoneNumber}, #{contact.email},
+            #{contact.profileLink})
         </foreach>
     </insert>
 
     <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
         INSERT INTO contact (phone_number, email, profile_link)
-        VALUES (#{phoneNumber, jdbcType=VARCHAR}, #{email, jdbcType=VARCHAR}, #{profileLink});
+        VALUES (#{phoneNumber}, #{email}, #{profileLink});
     </insert>
 
     <!--    <update id="updateById" parameterType="liga.medical.personservice.core.model.ContactEntity" >-->

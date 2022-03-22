@@ -31,17 +31,29 @@
                 #{index}, #{street}, #{building}, #{flat});
     </insert>
 
-    <!--    <update id="updateById" parameterType="liga.medical.personservice.core.model.ContactEntity" >-->
+    <!--    <update id="updateById" parameterType="liga.medical.personservice.core.model.AddressEntity" >-->
     <!--        <if test="id != null">-->
     <!--            UPDATE contact SET-->
-    <!--            <if test="phoneNumber != null">-->
-    <!--                phone_number = #{phoneNumber},-->
+    <!--            <if test="contactId != null">-->
+    <!--                contact_id = #{contactId},-->
     <!--            </if>-->
-    <!--            <if test="email != null">-->
-    <!--                email = #{email},-->
+    <!--            <if test="countryId != null">-->
+    <!--                country_id = #{countryId},-->
     <!--            </if>-->
-    <!--            <if test="profileLink != null">-->
-    <!--                profile_link = #{profileLink},-->
+    <!--            <if test="city != null">-->
+    <!--                city = #{city},-->
+    <!--            </if>-->
+    <!--            <if test="index != null">-->
+    <!--                index = #{index},-->
+    <!--            </if>-->
+    <!--            <if test="street != null">-->
+    <!--                street = #{street},-->
+    <!--            </if>-->
+    <!--            <if test="building != null">-->
+    <!--                building = #{building},-->
+    <!--            </if>-->
+    <!--            <if test="flat != null">-->
+    <!--                flat = #{flat},-->
     <!--            </if>-->
     <!--            WHERE id = #{id};-->
     <!--        </if>-->

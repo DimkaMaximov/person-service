@@ -1,15 +1,3 @@
-DELETE FROM illness;
-DELETE FROM person_data;
-DELETE FROM address;
-DELETE FROM medical_card;
-DELETE FROM contact;
-
-ALTER SEQUENCE contact_seq RESTART WITH 1;
-ALTER SEQUENCE medical_card_seq RESTART WITH 1;
-ALTER SEQUENCE address_seq RESTART WITH 1;
-ALTER SEQUENCE person_data_seq RESTART WITH 1;
-ALTER SEQUENCE illness_seq RESTART WITH 1;
-
 INSERT INTO contact (phone_number, email, profile_link)
 VALUES ('+63-327-333-3986','ajoiris0@dion.ne.jp','ddaal0'),
        ('+66-381-208-3079','jlucchi1@paginegialle.it','rcowlam1'),

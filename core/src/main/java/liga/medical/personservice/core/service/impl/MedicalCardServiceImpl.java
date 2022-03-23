@@ -45,7 +45,8 @@ public class MedicalCardServiceImpl implements MedicalCardService {
     @Override
     public void insert(MedicalCardDto medicalCard) {
         MedicalCardEntity cardEntity = modelMapper.map(medicalCard, MedicalCardEntity.class);
-        repository.insert(cardEntity);
+        if (cardEntity.getId() == null) repository.insert(cardEntity);
+        else repository.updateById(cardEntity);
     }
 
     @Override

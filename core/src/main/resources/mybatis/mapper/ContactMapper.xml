@@ -8,7 +8,7 @@
 
     <select id="findAll" resultMap="contactEntity">
         SELECT *
-        FROM contact;
+        FROM contact ORDER BY id;
     </select>
 
     <select id="findById" resultMap="contactEntity">
@@ -30,28 +30,20 @@
         VALUES (#{phoneNumber}, #{email}, #{profileLink});
     </insert>
 
-    <!--    <update id="updateById" parameterType="liga.medical.personservice.core.model.ContactEntity" >-->
-    <!--        <if test="id != null">-->
-    <!--            UPDATE contact SET-->
-    <!--            <if test="phoneNumber != null">-->
-    <!--                phone_number = #{phoneNumber},-->
-    <!--            </if>-->
-    <!--            <if test="email != null">-->
-    <!--                email = #{email},-->
-    <!--            </if>-->
-    <!--            <if test="profileLink != null">-->
-    <!--                profile_link = #{profileLink},-->
-    <!--            </if>-->
-    <!--            WHERE id = #{id};-->
-    <!--        </if>-->
-    <!--    </update>-->
-
     <update id="updateById" parameterType="liga.medical.personservice.core.model.ContactEntity">
-        UPDATE contact
-        SET phone_number = #{contact.phoneNumber},
-            email        = #{contact.email},
-            profile_link = #{contact.profileLink}
-        WHERE id = #{contact.id};
+        <if test="contact.id != null">
+            UPDATE contact SET
+            <if test="contact.phoneNumber != null">
+                phone_number = #{contact.phoneNumber}
+            </if>
+            <if test="contact.email != null">
+                email = #{contact.email}
+            </if>
+            <if test="contact.profileLink != null">
+                profile_link = #{contact.profileLink}
+            </if>
+            WHERE id = #{contact.id};
+        </if>
     </update>
 
     <delete id="deleteById">

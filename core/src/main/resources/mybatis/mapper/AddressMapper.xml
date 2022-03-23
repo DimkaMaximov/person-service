@@ -8,7 +8,7 @@
 
     <select id="findAll" resultMap="addressEntity">
         SELECT *
-        FROM address
+        FROM address ORDER BY id;
     </select>
 
     <select id="findById" resultMap="addressEntity">
@@ -31,45 +31,33 @@
                 #{index}, #{street}, #{building}, #{flat});
     </insert>
 
-    <!--    <update id="updateById" parameterType="liga.medical.personservice.core.model.AddressEntity" >-->
-    <!--        <if test="id != null">-->
-    <!--            UPDATE contact SET-->
-    <!--            <if test="contactId != null">-->
-    <!--                contact_id = #{contactId},-->
-    <!--            </if>-->
-    <!--            <if test="countryId != null">-->
-    <!--                country_id = #{countryId},-->
-    <!--            </if>-->
-    <!--            <if test="city != null">-->
-    <!--                city = #{city},-->
-    <!--            </if>-->
-    <!--            <if test="index != null">-->
-    <!--                index = #{index},-->
-    <!--            </if>-->
-    <!--            <if test="street != null">-->
-    <!--                street = #{street},-->
-    <!--            </if>-->
-    <!--            <if test="building != null">-->
-    <!--                building = #{building},-->
-    <!--            </if>-->
-    <!--            <if test="flat != null">-->
-    <!--                flat = #{flat},-->
-    <!--            </if>-->
-    <!--            WHERE id = #{id};-->
-    <!--        </if>-->
-    <!--    </update>-->
-
-    <update id="updateById" parameterType="liga.medical.personservice.core.model.AddressEntity">
-        UPDATE address
-        SET contact_id = #{address.contactId},
-            country_id = #{address.countryId},
-            city       = #{address.city},
-            index      = #{address.index},
-            street     = #{address.street},
-            building   = #{address.building},
-            flat       = #{address.flat}
-        WHERE id = #{address.id};
-    </update>
+        <update id="updateById" parameterType="liga.medical.personservice.core.model.AddressEntity" >
+            <if test="address.id != null">
+                UPDATE address SET
+                <if test="address.contactId != null">
+                    contact_id = #{address.contactId}
+                </if>
+                <if test="address.countryId != null">
+                    country_id = #{address.countryId}
+                </if>
+                <if test="address.city != null">
+                    city = #{address.city}
+                </if>
+                <if test="address.index != null">
+                    index = #{address.index}
+                </if>
+                <if test="address.street != null">
+                    street = #{address.street}
+                </if>
+                <if test="address.building != null">
+                    building = #{address.building}
+                </if>
+                <if test="address.flat != null">
+                    flat = #{address.flat}
+                </if>
+                WHERE id = #{address.id};
+            </if>
+        </update>
 
     <delete id="deleteById">
         DELETE

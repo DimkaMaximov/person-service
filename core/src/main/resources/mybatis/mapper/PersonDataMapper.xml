@@ -8,7 +8,7 @@
 
     <select id="findAll" resultMap="personDataEntity">
         SELECT *
-        FROM person_data;
+        FROM person_data ORDER BY id;
     </select>
 
     <select id="findById" resultMap="personDataEntity">
@@ -36,48 +36,35 @@
                 #{medicalCardId}, #{parentId});
     </insert>
 
-    <!--    <update id="updateById" parameterType="liga.medical.personservice.core.model.PersonDataEntity" >-->
-    <!--        <if test="id != null">-->
-    <!--            UPDATE contact SET-->
-    <!--            <if test="lastName != null">-->
-    <!--                last_name = #{lastName},-->
-    <!--            </if>-->
-    <!--            <if test="firstName != null">-->
-    <!--                first_name = #{firstName},-->
-    <!--            </if>-->
-    <!--            <if test="birthDt != null">-->
-    <!--                birth_dt = #{birthDt},-->
-    <!--            </if>-->
-    <!--            <if test="age != null">-->
-    <!--                age = #{age},-->
-    <!--            </if>-->
-    <!--            <if test="sex != null">-->
-    <!--                sex = #{sex},-->
-    <!--            </if>-->
-    <!--            <if test="contactId != null">-->
-    <!--                contact_id = #{contactId},-->
-    <!--            </if>-->
-    <!--            <if test="medicalCardId != null">-->
-    <!--                medical_card_id = #{medicalCardId},-->
-    <!--            </if>-->
-    <!--            <if test="parentId != null">-->
-    <!--                parent_id = #{parentId},-->
-    <!--            </if>-->
-    <!--            WHERE id = #{id};-->
-    <!--        </if>-->
-    <!--    </update>-->
-
     <update id="updateById" parameterType="liga.medical.personservice.core.model.PersonDataEntity">
-        UPDATE person_data
-        SET last_name       = #{personData.lastName},
-            first_name      = #{personData.firstName},
-            birth_dt        = #{personData.birthDt},
-            age             = #{personData.age},
-            sex             = #{personData.sex},
-            contact_id      = #{personData.contactId},
-            medical_card_id = #{personData.medicalCardId},
-            parent_id       = #{personData.parentId}
-        WHERE id = #{personData.id};
+        <if test="personData.id != null">
+            UPDATE person_data SET
+            <if test="personData.lastName != null">
+                last_name = #{personData.lastName}
+            </if>
+            <if test="personData.firstName != null">
+                first_name = #{personData.firstName}
+            </if>
+            <if test="personData.birthDt != null">
+                birth_dt = #{personData.birthDt}
+            </if>
+            <if test="personData.age != null">
+                age = #{personData.age}
+            </if>
+            <if test="personData.sex != null">
+                sex = #{personData.sex}
+            </if>
+            <if test="personData.contactId != null">
+                contact_id = #{personData.contactId}
+            </if>
+            <if test="personData.medicalCardId != null">
+                medical_card_id = #{personData.medicalCardId}
+            </if>
+            <if test="personData.parentId != null">
+                parent_id = #{personData.parentId}
+            </if>
+            WHERE id = #{personData.id};
+        </if>
     </update>
 
     <delete id="deleteById">

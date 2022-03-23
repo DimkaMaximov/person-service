@@ -8,7 +8,7 @@
 
     <select id="findAll" resultMap="medicalEntity">
         SELECT *
-        FROM medical_card
+        FROM medical_card ORDER BY id;
     </select>
 
     <insert id="insertAll" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
@@ -20,21 +20,21 @@
     </insert>
 
     <update id="updateById" parameterType="liga.medical.personservice.core.model.MedicalCardEntity">
-        <if test="id != null">
+        <if test="cardEntity.id != null">
             UPDATE medical_card SET
-            <if test="registryDt != null">
-                registry_dt = #{registryDt},
+            <if test="cardEntity.registryDt != null">
+                registry_dt = #{cardEntity.registryDt}
             </if>
-            <if test="comment != null">
-                comment = #{comment},
+            <if test="cardEntity.comment != null">
+                comment = #{cardEntity.comment}
             </if>
-            <if test="medStatus != null">
-                med_status = #{medStatus},
+            <if test="cardEntity.medStatus != null">
+                med_status = #{cardEntity.medStatus}
             </if>
-            <if test="clientStatus != null">
-                client_status = #{clientStatus}
+            <if test="cardEntity.clientStatus != null">
+                client_status = #{cardEntity.clientStatus}
             </if>
-            WHERE id = #{id};
+            WHERE id = #{cardEntity.id};
         </if>
     </update>
 

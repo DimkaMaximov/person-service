@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Data
@@ -18,7 +17,6 @@ public class MedicalCardDto {
 
     private String medStatus;
 
-    @NotNull
     private LocalDate registryDt;
 
     private String comment;

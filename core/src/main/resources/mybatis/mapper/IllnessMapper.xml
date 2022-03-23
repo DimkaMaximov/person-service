@@ -8,7 +8,7 @@
 
     <select id="findAll" resultMap="illnessEntity">
         SELECT *
-        FROM illness;
+        FROM illness ORDER BY id;
     </select>
 
     <select id="findById" resultMap="illnessEntity">
@@ -32,36 +32,26 @@
                 #{appearanceDttm}, #{recoveryDt});
     </insert>
 
-    <!--    <update id="updateById" parameterType="liga.medical.personservice.core.model.IllnessEntity" >-->
-    <!--        <if test="id != null">-->
-    <!--            UPDATE contact SET-->
-    <!--            <if test="medicalCardId != null">-->
-    <!--                medical_card_id = #{medicalCardId},-->
-    <!--            </if>-->
-    <!--            <if test="typeId != null">-->
-    <!--                type_id = #{typeId},-->
-    <!--            </if>-->
-    <!--            <if test="heaviness != null">-->
-    <!--                heaviness = #{heaviness},-->
-    <!--            </if>-->
-    <!--            <if test="appearanceDttm != null">-->
-    <!--                appearance_dttm = #{appearanceDttm},-->
-    <!--            </if>-->
-    <!--            <if test="recoveryDt != null">-->
-    <!--                recovery_dt = #{recoveryDt},-->
-    <!--            </if>-->
-    <!--            WHERE id = #{id};-->
-    <!--        </if>-->
-    <!--    </update>-->
-
     <update id="updateById" parameterType="liga.medical.personservice.core.model.IllnessEntity">
-        UPDATE illness
-        SET medical_card_id = #{illness.medicalCardId},
-            type_id         = #{illness.typeId},
-            heaviness       = #{illness.heaviness},
-            appearance_dttm = #{illness.appearanceDttm},
-            recovery_dt     = #{illness.recoveryDt}
-        WHERE id = #{illness.id};
+        <if test="illness.id != null">
+            UPDATE illness SET
+            <if test="illness.medicalCardId != null">
+                medical_card_id = #{illness.medicalCardId}
+            </if>
+            <if test="illness.typeId != null">
+                type_id = #{illness.typeId}
+            </if>
+            <if test="illness.heaviness != null">
+                heaviness = #{illness.heaviness}
+            </if>
+            <if test="illness.appearanceDttm != null">
+                appearance_dttm = #{illness.appearanceDttm}
+            </if>
+            <if test="illness.recoveryDt != null">
+                recovery_dt = #{illness.recoveryDt}
+            </if>
+            WHERE id = #{illness.id};
+        </if>
     </update>
 
     <delete id="deleteById">

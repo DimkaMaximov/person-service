@@ -21,7 +21,7 @@ public class AddressController {
     @Autowired
     private AddressService service;
 
-    @GetMapping("/all")
+    @GetMapping("")
     List<AddressDto> getAddresses() {
         return service.findAll();
     }

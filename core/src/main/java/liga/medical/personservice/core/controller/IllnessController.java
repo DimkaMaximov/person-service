@@ -21,7 +21,7 @@ public class IllnessController {
     @Autowired
     private IllnessService service;
 
-    @GetMapping("/all")
+    @GetMapping("")
     List<IllnessDto> getIllnesses() {
         return service.findAll();
     }

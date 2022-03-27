@@ -15,13 +15,13 @@ import java.util.List;
 
 @Validated
 @RestController
-@RequestMapping("admin/person-data")
+@RequestMapping("admin/data")
 public class PersonDataController {
 
     @Autowired
     private PersonDataService service;
 
-    @GetMapping("/all")
+    @GetMapping("")
     List<PersonDataDto> getPersonData() {
         return service.findAll();
     }

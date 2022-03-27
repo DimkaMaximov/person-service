@@ -21,12 +21,12 @@ public class UserController {
     @Autowired
     UserService service;
 
-    @GetMapping
+    @GetMapping("/info")
     ContactDto getContact(@AuthenticationPrincipal ContactEntity contact) {
         return service.findContact(contact.getId());
     }
 
-    @GetMapping("/card")
+    @GetMapping("/medcard")
     MedicalCardDto getCard(@AuthenticationPrincipal ContactEntity contact) {
         return service.findMedicalCard(contact.getId());
     }

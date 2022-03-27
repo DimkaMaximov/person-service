@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>User page</title>
+</head>
+<body>
+<h3 th:inline="text" style="text-transform:uppercase">[[${#httpServletRequest.remoteUser}]] page</h3>
+<p><a th:href="@{/user/info}">Мой аккаунт</a></p>
+<p><a th:href="@{/user/medcard}">Медицинская карта</a></p>
+<p><a th:href="@{/user/address}">Адрес</a></p>
+<p><a th:href="@{/user/data}">Персональная информация</a></p>
+<p><a th:href="@{/user/illness}">Заболевания</a></p>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Sign Out"/>
+</form>
+</body>
+</html>

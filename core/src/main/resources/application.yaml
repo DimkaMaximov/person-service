@@ -4,6 +4,11 @@ server:
     context-path: /
 
 spring:
+#  security:
+#    user:
+#      username: admin
+#      password: admin
+
   datasource:
     url: jdbc:postgresql://localhost:5432/medical?currentSchema=person_data
     username: postgres

@@ -1,6 +1,5 @@
 package liga.medical.personservice.core.config;
 
-import liga.medical.personservice.dto.ContactDto;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
@@ -22,8 +21,7 @@ public class LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
         if (role.contains("ROLE_ADMIN")) {
             response.sendRedirect("/admin");
         } else if (role.contains("ROLE_USER")) {
-            Long id = ((ContactDto) authentication.getPrincipal()).getId();
-            response.sendRedirect("/user/" + id);
+            response.sendRedirect("/user");
         }
         super.onAuthenticationSuccess(request, response, authentication);
     }

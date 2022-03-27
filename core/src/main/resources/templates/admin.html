@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+  <title>Admin page</title>
+</head>
+<body>
+<h3 th:inline="text" style="text-transform:uppercase">[[${#httpServletRequest.remoteUser}]] page</h3>
+<p  style="color: gray">* Для отображения данных конкретного пользователя добавьте id в строке URL. Например: "address/1"</p>
+<p><a th:href="@{/admin/contact}">Контакты</a></p>
+<p><a th:href="@{/admin/medcard}">Медицинские карты</a></p>
+<p><a th:href="@{/admin/address}">Адреса</a></p>
+<p><a th:href="@{/admin/data}">Персональная информация</a></p>
+<p><a th:href="@{/admin/illness}">Заболевания</a></p>
+<form th:action="@{/logout}" method="post">
+  <input type="submit" value="Sign Out"/>
+</form>
+</body>
+</html>

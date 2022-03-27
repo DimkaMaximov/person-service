@@ -17,6 +17,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     UserServiceImpl userService;
 
+    @Autowired
+    LoginSuccessHandler loginSuccessHandler;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -29,7 +32,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                     .formLogin()
                     .loginPage("/login")
-                    .defaultSuccessUrl("/hello")
+                    .permitAll()
+                    .successHandler(loginSuccessHandler)
+                    .usernameParameter("email")
+                    .passwordParameter("password")
                     .permitAll()
                 .and()
                     .logout()

@@ -21,7 +21,7 @@ public class ContactController {
     @Autowired
     private ContactService service;
 
-    @GetMapping("/all")
+    @GetMapping("")
     List<ContactDto> getContacts() {
         return service.findAll();
     }

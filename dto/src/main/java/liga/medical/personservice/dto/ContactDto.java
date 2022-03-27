@@ -15,5 +15,12 @@ public class ContactDto {
 
     private String email;
 
+    private String password;
+
     private String profileLink;
+
+    public ContactDto(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
 }

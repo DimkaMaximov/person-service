@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="liga.medical.personservice.core.repository.UserRepository">
+
+    <resultMap id="contactEntity" type="liga.medical.personservice.core.model.ContactEntity" autoMapping="true">
+        <id property="id" column="id" jdbcType="BIGINT"/>
+    </resultMap>
+
+    <resultMap id="medicalEntity" type="liga.medical.personservice.core.model.MedicalCardEntity" autoMapping="true">
+        <id property="id" column="id" jdbcType="BIGINT"/>
+    </resultMap>
+
+    <resultMap id="addressEntity" type="liga.medical.personservice.core.model.AddressEntity" autoMapping="true">
+        <id property="id" column="id" jdbcType="BIGINT"/>
+    </resultMap>
+
+    <resultMap id="personDataEntity" type="liga.medical.personservice.core.model.PersonDataEntity" autoMapping="true">
+        <id property="id" column="id" jdbcType="BIGINT"/>
+    </resultMap>
+
+    <resultMap id="illnessEntity" type="liga.medical.personservice.core.model.IllnessEntity" autoMapping="true">
+        <id property="id" column="id" jdbcType="BIGINT"/>
+    </resultMap>
+    
+</mapper>

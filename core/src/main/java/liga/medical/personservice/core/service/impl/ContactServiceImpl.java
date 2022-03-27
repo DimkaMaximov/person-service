@@ -35,6 +35,12 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
+    public ContactDto findByEmail(String email){
+        ContactEntity contact = repository.findByEmail(email);
+        return modelMapper.map(contact, ContactDto.class);
+    }
+
+    @Override
     public void insertAll(List<ContactDto> contactDtoList) {
         List<ContactEntity> contactList = contactDtoList.stream()
                 .map(el -> modelMapper.map(el, ContactEntity.class))

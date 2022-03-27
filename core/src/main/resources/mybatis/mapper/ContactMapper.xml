@@ -17,17 +17,23 @@
         WHERE id = #{contactId};
     </select>
 
+    <select id="findByEmail" resultMap="contactEntity">
+        SELECT *
+        FROM contact
+        WHERE email = #{email};
+    </select>
+
     <insert id="insertAll" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
-        INSERT INTO contact (phone_number, email, profile_link) VALUES
+        INSERT INTO contact (phone_number, email, profile_link, password, role) VALUES
         <foreach collection="contactList" item="contact" separator=",">
             (#{contact.phoneNumber}, #{contact.email},
-            #{contact.profileLink})
+            #{contact.profileLink}, #{contact.password}, #{contact.role})
         </foreach>
     </insert>
 
     <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
-        INSERT INTO contact (phone_number, email, profile_link)
-        VALUES (#{phoneNumber}, #{email}, #{profileLink});
+        INSERT INTO contact (phone_number, email, profile_link, password, role)
+        VALUES (#{phoneNumber}, #{email}, #{profileLink}, #{password}, #{role}::user_role);
     </insert>
 
     <update id="updateById" parameterType="liga.medical.personservice.core.model.ContactEntity">

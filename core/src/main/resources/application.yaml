@@ -19,6 +19,14 @@ spring:
       minimum-idle: 4
 #      validation-timeout: 120000
 
+#  thymeleaf:
+#    prefix: classpath:/templates/
+#    mode: HTML
+#    encoding: UTF-8
+#    cache: false
+#    servlet:
+#      content-type: text/html
+
 mybatis:
   configuration:
     map-underscore-to-camel-case: true

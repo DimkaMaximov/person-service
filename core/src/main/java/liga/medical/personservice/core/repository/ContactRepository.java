@@ -13,6 +13,8 @@ public interface ContactRepository {
 
     ContactEntity findById(Long contactId);
 
+    ContactEntity findByEmail(String email);
+
     int insertAll(@Param("contactList") List<ContactEntity> contactList);
 
     int insert(ContactEntity contact);

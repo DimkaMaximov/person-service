@@ -1,0 +1,1 @@
+ALTER TABLE contact ADD COLUMN password VARCHAR(50);

@@ -1,0 +1,1 @@
+ALTER TABLE contact ALTER COLUMN phone_number SET NOT NULL;

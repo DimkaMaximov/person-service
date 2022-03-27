@@ -14,12 +14,12 @@ public class RegistrationController {
     ContactService service;
 
     @GetMapping("/registration")
-    public String registration(){
+    public String registration() {
         return "registration";
     }
 
     @PostMapping("/registration")
-    public String addContact(ContactDto contactDto, String message){
+    public String addContact(ContactDto contactDto, String message) {
 //        ContactDto contact = service.findByEmail(contactDto.getEmail());
 //        if(contact != null){
 //            message = "User exists, please login";

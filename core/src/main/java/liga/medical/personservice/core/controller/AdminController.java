@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AdminController {
 
     @GetMapping
-    public String getAdminPage(){
+    public String getAdminPage() {
         return "This is admin page";
     }
 }

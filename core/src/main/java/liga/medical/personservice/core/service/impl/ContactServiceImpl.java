@@ -35,7 +35,7 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
-    public ContactDto findByEmail(String email){
+    public ContactDto findByEmail(String email) {
         ContactEntity contact = repository.findByEmail(email);
         return modelMapper.map(contact, ContactDto.class);
     }

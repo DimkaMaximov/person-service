@@ -1,6 +1,10 @@
 package liga.medical.personservice.core.repository;
 
-import liga.medical.personservice.core.model.*;
+import liga.medical.personservice.core.model.ContactEntity;
+import liga.medical.personservice.core.model.MedicalCardEntity;
+import liga.medical.personservice.core.model.AddressEntity;
+import liga.medical.personservice.core.model.PersonDataEntity;
+import liga.medical.personservice.core.model.IllnessEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 

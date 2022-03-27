@@ -2,7 +2,11 @@ package liga.medical.personservice.core.controller;
 
 import liga.medical.personservice.core.model.ContactEntity;
 import liga.medical.personservice.core.service.UserService;
-import liga.medical.personservice.dto.*;
+import liga.medical.personservice.dto.ContactDto;
+import liga.medical.personservice.dto.MedicalCardDto;
+import liga.medical.personservice.dto.AddressDto;
+import liga.medical.personservice.dto.PersonDataDto;
+import liga.medical.personservice.dto.IllnessDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,9 +21,9 @@ public class UserController {
     @Autowired
     UserService service;
 
-    @GetMapping()
+    @GetMapping
     ContactDto getContact(@AuthenticationPrincipal ContactEntity contact) {
-            return service.findContact(contact.getId());
+        return service.findContact(contact.getId());
     }
 
     @GetMapping("/card")

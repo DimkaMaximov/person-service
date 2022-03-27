@@ -6,6 +6,7 @@ import liga.medical.personservice.core.service.ContactService;
 import liga.medical.personservice.dto.ContactDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,7 +19,10 @@ public class ContactServiceImpl implements ContactService {
     ContactRepository repository;
 
     @Autowired
-    private ModelMapper modelMapper;
+    ModelMapper modelMapper;
+
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     @Override
     public List<ContactDto> findAll() {
@@ -43,6 +47,7 @@ public class ContactServiceImpl implements ContactService {
     @Override
     public void insertAll(List<ContactDto> contactDtoList) {
         List<ContactEntity> contactList = contactDtoList.stream()
+                .peek(el -> el.setPassword(passwordEncoder.encode(el.getPassword())))
                 .map(el -> modelMapper.map(el, ContactEntity.class))
                 .collect(Collectors.toList());
         repository.insertAll(contactList);
@@ -51,6 +56,7 @@ public class ContactServiceImpl implements ContactService {
     @Override
     public void insert(ContactDto contactDto) {
         ContactEntity contact = modelMapper.map(contactDto, ContactEntity.class);
+        contact.setPassword(passwordEncoder.encode(contact.getPassword()));
         if (contact.getId() == null) repository.insert(contact);
         else repository.updateById(contact);
     }

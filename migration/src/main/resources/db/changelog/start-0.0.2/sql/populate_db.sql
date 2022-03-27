@@ -1,6 +1,6 @@
 INSERT INTO contact (phone_number, email, profile_link)
-VALUES ('+63-327-333-3986','admin','ddaal0'),
-       ('+66-381-208-3079','contact','rcowlam1'),
+VALUES ('+63-327-333-3986','admin7231821','dsfddaal0'),
+       ('+66-381-208-3079','contact31321','rwercowlam1'),
        ('+62-232-299-5513','aboeter2@buzzfeed.com','hwhittuck2'),
        ('+63-333-367-1446','lapfelmann3@g.co','bstorer3'),
        ('+62-552-210-1031','fledgerton4@goodreads.com','sharms4'),

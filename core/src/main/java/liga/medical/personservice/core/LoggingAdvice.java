@@ -1,7 +1,7 @@
 package liga.medical.personservice.core;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+//import com.fasterxml.jackson.databind.ObjectMapper;
 import liga.medical.personservice.core.model.ContactEntity;
 import liga.medical.personservice.core.model.LogEntity;
 import liga.medical.personservice.core.repository.LogEntityRepository;
@@ -20,18 +20,28 @@ import java.time.LocalDateTime;
 @Component
 public class LoggingAdvice {
 
+//    private static final ObjectMapper objectMapper = new ObjectMapper();
+
     @Autowired
     LogEntityRepository repository;
 
     Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Pointcut("within (liga.medical.personservice.core.controller.*)")
-    public void controller() {
+    public void controllerPc() {
     }
 
-    @Around("controller()")
+    @Pointcut("execution(* org.springframework.security.core.userdetails.UserDetailsService.loadUserByUsername(String))")
+    public void userDetailsServicePc(){
+    }
+
+//    @AfterThrowing(value = "userDetailsServicePc()", throwing = "ex")
+//    public void authorisationException(Throwable ex) {
+//        log.info("Ошибка авторизации");
+//    }
+
+    @Around("controllerPc()")
     public Object controllerLogging(ProceedingJoinPoint pjp) throws JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapper();
 
         LocalDateTime eventTime = LocalDateTime.now();
         String methodName = pjp.getSignature().getName();
@@ -45,11 +55,10 @@ public class LoggingAdvice {
                 .className(className)
                 .email(contact.getEmail())
                 .build();
-        Object[] array = pjp.getArgs();
 
         repository.insert(logEntity);
         Long eventId = repository.findLogId(eventTime);
-        log.info("Log#{} {} Вызван метод: {}:{}() с аргументами{}", eventId, eventTime, className, methodName, objectMapper.writeValueAsString(array));
+        log.info("Log#{} {} Вызван метод: {}:{}() с аккаунта: {}", eventId, eventTime, className, methodName, logEntity.getEmail());
 
         Object object = null;
         try {
@@ -57,7 +66,32 @@ public class LoggingAdvice {
         } catch (Throwable e) {
             e.printStackTrace();
         }
-        log.info("Log#{} {} {}:{}() Response: {}",  eventId, eventTime, className, methodName, objectMapper.writeValueAsString(object));
+
+        return object;
+    }
+
+    @Around("userDetailsServicePc()")
+    public Object authorisationLogging(ProceedingJoinPoint pjp) {
+        Object[] array = pjp.getArgs();
+        String email = array[0].toString();
+        LocalDateTime eventTime = LocalDateTime.now();
+
+        LogEntity logEntity = LogEntity.builder()
+                .eventTime(eventTime)
+                .email(email)
+                .build();
+
+        repository.insert(logEntity);
+        Long eventId = repository.findLogId(eventTime);
+        log.info("Log#{} {} Попытка авторизации с email: {}", eventId, eventTime, logEntity.getEmail());
+
+        Object object = null;
+        try {
+            object = pjp.proceed();
+        } catch (Throwable e) {
+            e.printStackTrace();
+        }
+        log.info("Log#{} {} Авторизация завершена с email: {}", eventId, eventTime, logEntity.getEmail());
 
         return object;
     }

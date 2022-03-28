@@ -11,6 +11,14 @@ import javax.sql.DataSource;
 @Component
 public class InitAccount {
 
+    /**
+     * after init() you can login as:
+     * admin    admin
+     * user1    password
+     * user2    password
+     * ....
+     */
+
     @Autowired
     JdbcTemplate template;
 

@@ -1,7 +1,5 @@
 package liga.medical.personservice.core;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-//import com.fasterxml.jackson.databind.ObjectMapper;
 import liga.medical.personservice.core.model.ContactEntity;
 import liga.medical.personservice.core.model.LogEntity;
 import liga.medical.personservice.core.repository.LogEntityRepository;
@@ -20,28 +18,21 @@ import java.time.LocalDateTime;
 @Component
 public class LoggingAdvice {
 
-//    private static final ObjectMapper objectMapper = new ObjectMapper();
-
     @Autowired
     LogEntityRepository repository;
 
     Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Pointcut("within (liga.medical.personservice.core.controller.*)")
-    public void controllerPc() {
+    public void controllersPc() {
     }
 
     @Pointcut("execution(* org.springframework.security.core.userdetails.UserDetailsService.loadUserByUsername(String))")
-    public void userDetailsServicePc(){
+    public void userDetailsServicePc() {
     }
 
-//    @AfterThrowing(value = "userDetailsServicePc()", throwing = "ex")
-//    public void authorisationException(Throwable ex) {
-//        log.info("Ошибка авторизации");
-//    }
-
-    @Around("controllerPc()")
-    public Object controllerLogging(ProceedingJoinPoint pjp) throws JsonProcessingException {
+    @Around("controllersPc()")
+    public Object controllersLogging(ProceedingJoinPoint pjp) {
 
         LocalDateTime eventTime = LocalDateTime.now();
         String methodName = pjp.getSignature().getName();
@@ -66,12 +57,12 @@ public class LoggingAdvice {
         } catch (Throwable e) {
             e.printStackTrace();
         }
-
         return object;
     }
 
     @Around("userDetailsServicePc()")
-    public Object authorisationLogging(ProceedingJoinPoint pjp) {
+    public Object authenticationLogging(ProceedingJoinPoint pjp) {
+
         Object[] array = pjp.getArgs();
         String email = array[0].toString();
         LocalDateTime eventTime = LocalDateTime.now();
@@ -83,7 +74,6 @@ public class LoggingAdvice {
 
         repository.insert(logEntity);
         Long eventId = repository.findLogId(eventTime);
-        log.info("Log#{} {} Попытка авторизации с email: {}", eventId, eventTime, logEntity.getEmail());
 
         Object object = null;
         try {
@@ -91,7 +81,9 @@ public class LoggingAdvice {
         } catch (Throwable e) {
             e.printStackTrace();
         }
-        log.info("Log#{} {} Авторизация завершена с email: {}", eventId, eventTime, logEntity.getEmail());
+        if (object != null) {
+            log.info("Log#{} {} Аутентификация с email: {} завершена успешно", eventId, eventTime, logEntity.getEmail());
+        } else log.info("Log#{} {} Ошибка аутентификации. Аккаунт с email: {} не зарегистрирован", eventId, eventTime, logEntity.getEmail());
 
         return object;
     }

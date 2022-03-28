@@ -2,7 +2,7 @@ package liga.medical.personservice.core.service.impl;
 
 import liga.medical.personservice.core.model.AddressEntity;
 import liga.medical.personservice.core.repository.AddressRepository;
-import liga.medical.personservice.core.service.AddressService;
+import liga.medical.personservice.coreapi.service.AddressService;
 import liga.medical.personservice.dto.AddressDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

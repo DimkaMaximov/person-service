@@ -1,6 +1,6 @@
 package liga.medical.personservice.core.controller;
 
-import liga.medical.personservice.core.service.AddressService;
+import liga.medical.personservice.coreapi.service.AddressService;
 import liga.medical.personservice.dto.AddressDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;

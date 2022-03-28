@@ -2,7 +2,7 @@ package liga.medical.personservice.core.service.impl;
 
 import liga.medical.personservice.core.model.PersonDataEntity;
 import liga.medical.personservice.core.repository.PersonDataRepository;
-import liga.medical.personservice.core.service.PersonDataService;
+import liga.medical.personservice.coreapi.service.PersonDataService;
 import liga.medical.personservice.dto.PersonDataDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

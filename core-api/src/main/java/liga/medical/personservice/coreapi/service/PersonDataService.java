@@ -1,4 +1,4 @@
-package liga.medical.personservice.core.service;
+package liga.medical.personservice.coreapi.service;
 
 import liga.medical.personservice.dto.PersonDataDto;
 

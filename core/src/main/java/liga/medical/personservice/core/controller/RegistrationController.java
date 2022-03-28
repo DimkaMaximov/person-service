@@ -1,6 +1,6 @@
 package liga.medical.personservice.core.controller;
 
-import liga.medical.personservice.core.service.ContactService;
+import liga.medical.personservice.coreapi.service.ContactService;
 import liga.medical.personservice.dto.ContactDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

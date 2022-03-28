@@ -1,7 +1,7 @@
 package liga.medical.personservice.core.controller;
 
 import liga.medical.personservice.core.model.ContactEntity;
-import liga.medical.personservice.core.service.UserService;
+import liga.medical.personservice.coreapi.service.UserService;
 import liga.medical.personservice.dto.ContactDto;
 import liga.medical.personservice.dto.MedicalCardDto;
 import liga.medical.personservice.dto.AddressDto;

@@ -6,7 +6,7 @@ import liga.medical.personservice.core.model.AddressEntity;
 import liga.medical.personservice.core.model.PersonDataEntity;
 import liga.medical.personservice.core.model.IllnessEntity;
 import liga.medical.personservice.core.repository.UserRepository;
-import liga.medical.personservice.core.service.UserService;
+import liga.medical.personservice.coreapi.service.UserService;
 import liga.medical.personservice.dto.ContactDto;
 import liga.medical.personservice.dto.MedicalCardDto;
 import liga.medical.personservice.dto.AddressDto;

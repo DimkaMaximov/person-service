@@ -2,7 +2,7 @@ package liga.medical.personservice.core.service.impl;
 
 import liga.medical.personservice.core.model.IllnessEntity;
 import liga.medical.personservice.core.repository.IllnessRepository;
-import liga.medical.personservice.core.service.IllnessService;
+import liga.medical.personservice.coreapi.service.IllnessService;
 import liga.medical.personservice.dto.IllnessDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
